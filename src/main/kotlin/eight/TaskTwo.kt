@@ -22,8 +22,8 @@ data class Graph (val adjacencyMap : Map<Vertex, Set<Vertex>> = mutableMapOf()) 
     fun dfs(startVertex : Vertex) : Set<Vertex> {
         val stack = Stack<Vertex>()
         adjacencyMap[startVertex]?.forEach { stack.add(it) }
-        while (stack)
-        stack.forEach(stack.add(adjacencyMap[it]))
+        //while (stack)
+        //stack.forEach(stack.add(adjacencyMap[it]))
         return setOf()
     }
 
@@ -34,7 +34,7 @@ data class Graph (val adjacencyMap : Map<Vertex, Set<Vertex>> = mutableMapOf()) 
     }
 
     fun  dfs(startVertex : Vertex, goal : Int) : Vertex? {
-
+        return null
     }
 
 }

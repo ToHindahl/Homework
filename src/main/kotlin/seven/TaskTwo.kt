@@ -36,7 +36,7 @@ data class BinarySearchTree(var root : TreeNode? = null) {
         }
     }
 
-    fun toList(node: TreeNode? = root, accumulator : List<Int> = emptyList()): List<Int> {
+    tailrec fun toList(node: TreeNode? = root, accumulator : List<Int> = emptyList()): List<Int> {
         if (node == null) {
             return accumulator
         }

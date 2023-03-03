@@ -10,7 +10,12 @@ class TaskThreeKtTest {
 
     @Test
     fun calculateTest() {
-        Assertions.assertEquals(1.0, calculate("1 2 + 3 4 * - 9 /"))
+        Assertions.assertEquals(-1.0, calculate("1 2 + 3 4 * - 9 /"))
+    }
+
+    @Test
+    fun calculateTestTwo() {
+        Assertions.assertEquals(3.0, calculate("1 1 1 + +"))
     }
 
     @Test

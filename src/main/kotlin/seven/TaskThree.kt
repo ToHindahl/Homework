@@ -9,11 +9,11 @@ import java.util.Stack
  */
 
 data class Stack(val list : LinkedList = LinkedList()) {
-    fun push(i : Int) : Unit = list.add(i)
-    fun peek() : Int = list.last()
+    fun push(i : Int) : Unit = list.prepend(i)
+    fun peek() : Int = list.first()
     fun pop() : Int {
-        val value = list.last()
-        list.remove(list.size()-1)
+        val value = list.first()
+        list.remove(0)
         return value
     }
     fun isEmpty() : Boolean = list.head == null
@@ -28,7 +28,7 @@ data class Queue(val list : QueueLinkedList = QueueLinkedList()) {
     fun front() : Int = list.first()
     fun dequeue() : Int {
         val value = list.first()
-        list.head = list.head?.next
+        list.remove(0)
         return value
     }
     fun isEmpty() : Boolean = list.head == null
@@ -79,12 +79,12 @@ data class QueueLinkedList(var tail : Node? = null) : LinkedList() {
 
     }
 
-
 }
 
 fun calculate(s : String) : Double {
     val list = s.split("\\s".toRegex())
     val stack = Stack<Double>()
+    println(list)
     list.forEach {
         if (it.toDoubleOrNull() != null) {
             stack.add(it.toDoubleOrNull())
@@ -93,8 +93,8 @@ fun calculate(s : String) : Double {
             val b = stack.pop()
             when(it) {
                 "+" -> stack.add(a + b)
-                "-" -> stack.add(a - b)
-                "/" -> stack.add(a / b)
+                "-" -> stack.add(b - a)
+                "/" -> stack.add(b / a)
                 "*" -> stack.add(a * b)
                 else -> throw Exception("Invalid Postfix Term")
             }

@@ -31,4 +31,10 @@ class TaskTwoKtTest {
         val list = listOf<Int>(2, 2, 3, 4, 5, 6, 10, 12, 18, 30, 100)
         Assertions.assertEquals(list, binarySearchTree.toList())
     }
+
+    @Test
+    fun toListTestEmpty() {
+        val binarySearchTree = initBinarySearchTree(listOf())
+        Assertions.assertEquals(emptyList<Int>(), binarySearchTree.toList())
+    }
 }
