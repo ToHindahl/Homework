@@ -1,6 +1,7 @@
 package eight
 
 import java.util.LinkedList
+import java.util.NoSuchElementException
 import java.util.Stack
 
 data class Graph (val adjacencyMap : MutableMap<Vertex, MutableSet<Vertex>> = mutableMapOf()) {
@@ -10,13 +11,31 @@ data class Graph (val adjacencyMap : MutableMap<Vertex, MutableSet<Vertex>> = mu
         }
     }
     fun removeVertex(v : Vertex) {
-        adjacencyMap.minus(v)
+        if(adjacencyMap.contains(v)) {
+            adjacencyMap.remove(v)
+            val it = adjacencyMap.iterator()
+            while (it.hasNext()) {
+                it.next().value.remove(v)
+            }
+        } else {
+            throw NoSuchElementException("Vertex nicht im Graphen!")
+        }
     }
     fun addEdge(fromVertex : Vertex, toVertex : Vertex) {
-        adjacencyMap[fromVertex]?.add(toVertex)
+        if(adjacencyMap.contains(fromVertex) && adjacencyMap.contains(toVertex)) {
+            adjacencyMap[fromVertex]!!.add(toVertex)
+        }
     }
     fun removeEdge(fromVertex : Vertex, toVertex : Vertex) {
-        adjacencyMap[fromVertex]?.remove(toVertex)
+        if(adjacencyMap.contains(fromVertex)) {
+            if(adjacencyMap[fromVertex]!!.contains(toVertex)) {
+                adjacencyMap[fromVertex]!!.remove(toVertex)
+            } else {
+                throw Exception("Keine Kante zum anderen Vertex!")
+            }
+        } else {
+            throw NoSuchElementException("Vertex nicht im Graphen!")
+        }
     }
 
     fun dfs(startVertex : Vertex) : Set<Vertex> {
