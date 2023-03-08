@@ -75,26 +75,6 @@ data class Graph (val adjacencyMap : MutableMap<Vertex, MutableSet<Vertex>> = mu
         return visited
     }
 
-    fun dfs(startVertex: Vertex, goal : String): Vertex? {
-        val visited = mutableSetOf<Vertex>()
-        val stack = Stack<Vertex>()
-        stack.push(startVertex)
-        while (!stack.isEmpty()) {
-            val curVertex = stack.pop()
-            if (curVertex.name == goal) {
-                return curVertex
-            }
-            visited.add(curVertex)
-            adjacencyMap[curVertex]?.forEach {
-                if (!visited.contains(it)) {
-                    stack.push(it)
-                }
-            }
-        }
-        return null
-    }
-
-
 }
 
 

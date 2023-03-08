@@ -1,9 +1,9 @@
 package one
 
 fun max(x : Int, y : Int) : Int {
-    if(x < y){
-        return y
+    return if(x < y){
+        y
     } else {
-        return x
+        x
     }
 }
