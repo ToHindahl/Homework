@@ -1,22 +1,10 @@
 package seven
 
-import java.util.concurrent.atomic.DoubleAccumulator
-
-fun main() {
-    var binarySearchTree = initBinarySearchTree(listOf(10,2,3,4,5,6,12,30,100,2,18))
-    binarySearchTree.add(10)
-    println(binarySearchTree)
-    println(binarySearchTree.contains(10))
-    println(binarySearchTree.contains(2))
-    println(binarySearchTree.contains(99))
-    println(binarySearchTree.toList())
-}
-
-data class TreeNode(val value : Int, var left : TreeNode? = null, var right : TreeNode? = null)
+data class TreeNode(val value : Double, var left : TreeNode? = null, var right : TreeNode? = null)
 
 data class BinarySearchTree(var root : TreeNode? = null) {
 
-    tailrec fun contains(value : Int, curNode : TreeNode? = root): Boolean {
+    tailrec fun contains(value : Double, curNode : TreeNode? = root): Boolean {
         return when {
             (curNode == null) -> false
             (value == curNode.value) -> true
@@ -26,7 +14,7 @@ data class BinarySearchTree(var root : TreeNode? = null) {
         }
     }
 
-    tailrec fun add(value : Int, curNode : TreeNode? = root) {
+    tailrec fun add(value : Double, curNode : TreeNode? = root) {
         when {
             (curNode == null) -> root = TreeNode(value)
             (value <= curNode.value && curNode.left == null) -> curNode.left = TreeNode(value)
@@ -36,7 +24,7 @@ data class BinarySearchTree(var root : TreeNode? = null) {
         }
     }
 
-    tailrec fun toList(node: TreeNode? = root, accumulator : List<Int> = emptyList()): List<Int> {
+    tailrec fun toList(node: TreeNode? = root, accumulator : List<Double> = emptyList()): List<Double> {
         if (node == null) {
             return accumulator
         }
@@ -47,7 +35,7 @@ data class BinarySearchTree(var root : TreeNode? = null) {
     }
 }
 
-fun initBinarySearchTree(list : List<Int>) : BinarySearchTree {
+fun initBinarySearchTree(list : List<Double>) : BinarySearchTree {
     val binarySearchTree = BinarySearchTree()
     list.forEach { binarySearchTree.add(it) }
     return binarySearchTree
