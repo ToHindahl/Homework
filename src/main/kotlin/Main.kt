@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.TestOnly
-
 fun main(args: Array<String>) {
     println("Hello World!")
 

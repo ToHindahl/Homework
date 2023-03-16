@@ -1,9 +1,9 @@
 package nine
 
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import java.util.Random
+import org.junit.jupiter.api.assertThrows
+import java.lang.Exception
 
 class TaskOneKtTest {
 
@@ -34,8 +34,7 @@ class TaskOneKtTest {
 
         graph.removeVertex(vertexB)
 
-
-        println(graph.shortestPath(vertexA, vertexE))
+        Assertions.assertEquals(Pair(8.0, listOf(vertexA, vertexE)), graph.shortestPath(vertexA, vertexE))
 
     }
     @Test
@@ -60,7 +59,7 @@ class TaskOneKtTest {
 
         graph.removeVertex(vertexB)
 
-        println(graph.shortestPath(vertexA, vertexE))
+        assertThrows<Exception> { graph.shortestPath(vertexA, vertexE) }
 
     }
 

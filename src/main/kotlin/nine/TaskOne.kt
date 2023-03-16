@@ -19,7 +19,6 @@ data class WeightedGraph (val adjacencyMap : MutableMap<WeightedVertex, MutableM
 
     fun addEdge(fromVertex : WeightedVertex, toVertex : WeightedVertex, weight : Double) {
         if(adjacencyMap.containsKey(fromVertex) && adjacencyMap.containsKey(toVertex)) {
-            println("add")
             adjacencyMap[fromVertex]!![toVertex] = weight
         } else {
             throw NoSuchElementException("Vertex nicht im Graph")
@@ -38,6 +37,10 @@ data class WeightedGraph (val adjacencyMap : MutableMap<WeightedVertex, MutableM
             throw NoSuchElementException("Vertex nicht im Graph")
         }
     }
+
+    /**
+     * @return Pair <lenght of shortest Distance, point to point>
+     */
 
     fun shortestPath(startVertex : WeightedVertex, toVertex : WeightedVertex): Pair<Double?, MutableList<WeightedVertex>> {
         val distanceMap = mutableMapOf<WeightedVertex, Double>()
